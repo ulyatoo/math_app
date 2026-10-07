@@ -236,7 +236,8 @@ footer {
     padding: 10px;
 }
 
-.card_container {
+.card_container,
+.card_wanswer {
     display: flex;
     flex-direction: column;
     gap: 20px;
