@@ -41,13 +41,43 @@ let card_wans = document.querySelector('.card_wanswer')
 function card_wansw(questions_answer) {
     const card = document.createElement("div");
     card.classList.add('card_wans');
-    card.innerHTML = `<p>${questions_answer[0].question}</p>
+    card.id = `card-${questions_answer.id}`;
+    card.innerHTML = `<p>${questions_answer.question}</p>
             <input type="text" class="answer_text" placeholder="введи ответ" autocomplete="off">
             <button class="check_btn">проверить ответ</button>
             <p class="result"></p>`;
     return card
 }
 
+questions_answer.forEach(question => {
+    card_wans.append(card_wansw(question));
+});
 
-    card_wans.append(card_wansw());
+let check_btn = document.querySelectorAll('.check_btn')
+
+check_btn.forEach(btn => {
+    btn.addEventListener('click', function(event) {
+        const card = event.target.closest('.card_wans');
+        
+        const id = Number(card.id.replace('card-', ''));
+
+        const que_ans = questions_answer.find(
+            item => item.id === id
+        );
+        
+        let result = card.querySelector('.result')
+
+        let answer = card.querySelector('.answer_text')
+        console.log(id)
+
+        result.innerHTML = ''
+        if (que_ans.answer == answer.value) {
+            result.innerHTML = 'ответ верный!'
+            result.style.color = 'green'
+        } else {
+            result.innerHTML = 'ответ неверный!'
+            result.style.color = 'red'
+        }
+    })
+})
 

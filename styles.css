@@ -228,7 +228,8 @@ footer {
 
 */
 
-.card {
+.card,
+.card_wans{
     border: #7D4F50 solid 2px;
     background-color: #FFF8F0;
     border-radius: 10px;
